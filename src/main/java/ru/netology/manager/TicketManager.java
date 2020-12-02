@@ -21,10 +21,9 @@ public class TicketManager {
     public Ticket[] findAll(String from, String to) {
         Ticket[] result = new Ticket[0];
         for (Ticket ticket : repository.getAll()) {
-            int length = result.length;
             if (ticket.getDeparture().equalsIgnoreCase(from) && ticket.getArrival().equalsIgnoreCase(to) ) {
-                Ticket[] tmp = new Ticket[length + 1];
-                System.arraycopy(result, 0, tmp, 0, length);
+                Ticket[] tmp = new Ticket[result.length + 1];
+                System.arraycopy(result, 0, tmp, 0,result.length );
                 int lastIndex = tmp.length - 1;
                 tmp[lastIndex] = ticket;
                 result = tmp;
