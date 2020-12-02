@@ -35,13 +35,13 @@ class TicketManagerTest {
     }
 
     @Test
-    void mustSearchIfExixsts() {
+    void mustSearchIfExists() {
         Ticket[] expected = new Ticket[]{first, seven, third};
         assertArrayEquals(expected, manager.findAll("AAA", "AAB"));
     }
 
     @Test
-    void mustSearchIfNotExixsts() {
+    void mustSearchIfNotExists() {
         Ticket[] expected = new Ticket[0];
         assertArrayEquals(expected, manager.findAll("AAA", "AAJ"));
     }
