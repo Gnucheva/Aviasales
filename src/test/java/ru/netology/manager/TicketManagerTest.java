@@ -50,5 +50,12 @@ class TicketManagerTest {
         assertArrayEquals(expected, manager.findAllByTime("AAA", "AAB", comparator));
     }
 
+    @Test
+    void mustShowIfNoTicketByTime() {
+        Comparator<Ticket> comparator = new TicketByTimeAscComparator();
+        Ticket[] expected = new Ticket[0];
+        assertArrayEquals(expected, manager.findAllByTime("AAA", "AAJ", comparator));
+
+    }
 
 }
