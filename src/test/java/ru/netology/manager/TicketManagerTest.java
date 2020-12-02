@@ -3,7 +3,10 @@ package ru.netology.manager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.Ticket;
+import ru.netology.domain.TicketByTimeAscComparator;
 import ru.netology.repository.TicketRepository;
+
+import java.util.Comparator;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
@@ -29,20 +32,23 @@ class TicketManagerTest {
     }
 
     @Test
-    void mustShowOffers() {
-        Ticket[] expected = new Ticket[]{first, five, second, seven, third, ten};
-        assertArrayEquals(expected, manager.showOffers());
-    }
-
-    @Test
-    void mustSearchIfExists() {
+    void mustShowTicketByPrice() {
         Ticket[] expected = new Ticket[]{first, seven, third};
-        assertArrayEquals(expected, manager.findAll("AAA", "AAB"));
+        assertArrayEquals(expected, manager.findAllByPrice("AAA", "AAB"));
     }
 
     @Test
-    void mustSearchIfNotExists() {
+    void mustShowIfNoTicket() {
         Ticket[] expected = new Ticket[0];
-        assertArrayEquals(expected, manager.findAll("AAA", "AAJ"));
+        assertArrayEquals(expected, manager.findAllByPrice("AAA", "AAJ"));
     }
+
+    @Test
+    void mustShowTicketByTime() {
+        Comparator<Ticket> comparator = new TicketByTimeAscComparator();
+        Ticket[] expected = new Ticket[]{first, third, seven};
+        assertArrayEquals(expected, manager.findAllByTime("AAA", "AAB", comparator));
+    }
+
+
 }
