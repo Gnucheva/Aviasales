@@ -5,17 +5,13 @@ import ru.netology.repository.TicketRepository;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class TicketManager {
     private TicketRepository repository;
 
     public TicketManager(TicketRepository repository) {
         this.repository = repository;
-    }
-
-    public boolean matches(Ticket ticket, String from, String to) {
-        return ticket.getDeparture().equalsIgnoreCase(from)
-                && ticket.getArrival().equalsIgnoreCase(to);
     }
 
     public void add(Ticket ticket) {
