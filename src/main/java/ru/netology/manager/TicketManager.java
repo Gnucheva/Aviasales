@@ -22,7 +22,7 @@ public class TicketManager {
         Ticket[] result = new Ticket[0];
         for (Ticket ticket : repository.getAll()) {
             int length = result.length;
-            if (ticket.getDeparture().equals(from) && ticket.getArrival().equals(to)) {
+            if (ticket.getDeparture().equalsIgnoreCase(from) && ticket.getArrival().equalsIgnoreCase(to) ) {
                 Ticket[] tmp = new Ticket[length + 1];
                 System.arraycopy(result, 0, tmp, 0, length);
                 int lastIndex = tmp.length - 1;
