@@ -8,17 +8,10 @@ import ru.netology.repository.TicketRepository;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
+@AllArgsConstructor
+
 public class TicketManager {
-    private TicketRepository repository;
-
-    public TicketManager(TicketRepository repository) {
-        this.repository = repository;
-    }
-
-    public boolean matches(Ticket ticket, String from, String to) {
-        return ticket.getDeparture().equalsIgnoreCase(from)
-                && ticket.getArrival().equalsIgnoreCase(to);
-    }
+    TicketRepository repository;
 
     public void add(Ticket ticket) {
         repository.save(ticket);
@@ -27,7 +20,7 @@ public class TicketManager {
     public Ticket[] findAll(String from, String to) {
         Ticket[] result = new Ticket[0];
         for (Ticket ticket : repository.getAll()) {
-            if (matches(ticket, from, to)) {
+            if (ticket.getDeparture().equalsIgnoreCase(from) && ticket.getArrival().equalsIgnoreCase(to)) {
                 Ticket[] tmp = new Ticket[result.length + 1];
                 System.arraycopy(result, 0, tmp, 0, result.length);
                 int lastIndex = tmp.length - 1;
